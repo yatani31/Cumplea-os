@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cumpleaños del amor de mi vida</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sacramento">
+  <style>
+    body {
+      background-color: #1e1934;
+      text-align: center;
+      overflow: hidden;
+      color: white;
+      font-family: 'Sacramento', cursive;
+    }
+    h1 {
+      position: fixed;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2em;
+      font-weight: 100;
+      letter-spacing: .1em;
+      text-shadow: 0 0 20px black;
+      opacity: .8;
+      transition: opacity 0.5s ease;
+    }
+    #candle-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.5s ease;
+    }
+    #candle {
+      position: relative;
+      width: 2em;
+      height: 12em;
+      background: linear-gradient(to bottom, #ffcc99 0%, #ff9966 100%);
+      border-radius: .5em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    #flame {
+      position: absolute;
+      top: -2.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.5em;
+      height: 2.5em;
+      background: radial-gradient(circle at 50% 50%, #ff9966, #ff3300);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 0 10px rgba(255, 153, 51, 0.5);
+      animation: burn 1.5s ease-in-out infinite;
+      cursor: pointer;
+    }
+    @keyframes burn {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-0.2em); }
+      100% { transform: translateY(0); }
+    }
+    #button-container, #card {
+      display: none;
+    }
+
+
+    #button-container {
+      position: absolute;
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      display: none; 
+    }
+    #show-card {
+      background-color: #ff9966;
+      color: white;
+      padding: 20px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      
+    }
+    #show-card:hover {
+      background-color: #ffcc99;
+      transform: scale(1.1);
+    }
+    #card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      color: black;
+      text-align: center;
+    }
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 2em;
+      animation: float 3s infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50%{
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(100vh); 
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="text">Pide Un Deseo...<br />... Y apaga la vela</h1>
+  <div id="candle-container">
+    <div id="candle">
+      <div id="flame"></div>
+    </div>
+  </div>
+  <div id="button-container">
+    <button id="show-card">¿Mensajitoooo? ^^</button>
+  </div>
+  <div id="card">
+    <h2>¡Feliz cumpleaños mi Abrahamcito precioso!</h2>
+    <p>Mi más dulce amor, en este día que marca el nacimiento de tu alma, mi corazón late con una gratitud infinita. Cada suspiro que compartimos, cada mirada que cruzamos, es un poema escrito por las estrellas en el cielo de nuestra existencia. Tú eres mi sol, el faro que ilumina mis días oscuros, y mi luna, que me guía en las noches más serenas. Hoy celebro la dicha de tu vida, como un jardinero que reverencia la flor más exquisita de su jardín. Que este día, tan especial, sea solo el inicio de innumerables momentos de amor y felicidad junto a ti. ¡Feliz cumpleaños, mi eterno amor! ❤</p>
+  </div>
+
+  <script>
+    document.getElementById("flame").addEventListener("click", function() {
+      document.getElementById("candle-container").style.opacity = "0"; 
+      document.getElementById("text").style.opacity = "0"; 
+      setTimeout(() => {
+        document.getElementById("candle-container").style.display = "none"; 
+        document.getElementById("text").style.display = "none"; 
+        document.getElementById("button-container").style.display = "block"; 
+      }, 500); 
+    });
+
+    document.getElementById("show-card").addEventListener("click", function() {
+      document.getElementById("card").style.display = "block"; 
+      document.getElementById("button-container").style.display = "none"; 
+      generarCorazones(); 
+    });
+
+    function generarCorazones() {
+      for (let i = 0; i < 20; i++) { 
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤";
+        document.body.appendChild(heart);
+        heart.style.left = Math.random() * window.innerWidth + "px";  
+        heart.style.fontSize = Math.random() * 2 + 2 + "em"; 
+        heart.style.animationDuration = (Math.random() * 4 + 4) + "s"; 
+      }
+    }
+  </script>
+</body>
+</html>
